@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+import NavBar from './NavBar'
 
-export default class MeteorMap extends Component {
-    render() {
-        return (
-            <div>
-                hi MeteorMap
-            </div>
-        )
-    }
+export default function MeteorMap() {
+    return (
+        <React.Fragment>
+            <NavBar/>
+        </React.Fragment>
+    )
 }
