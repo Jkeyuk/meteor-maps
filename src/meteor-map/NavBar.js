@@ -22,7 +22,7 @@ export default function NavBar() {
   return (
     <React.Fragment>
       <div className={css.root}>
-        <AppBar position="fixed">
+        <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" className={css.title}>
               Meteor Maps
