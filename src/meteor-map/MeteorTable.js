@@ -13,11 +13,9 @@ import meteorData from "./meteorData.json";
 const useStyles = makeStyles({
   root: {
     width: "100%"
-  },
-  container: {
-    maxHeight: 440
   }
 });
+
 const columns = [
   { id: "id", label: "Id", minWidth: 170 },
   { id: "name", label: "Name", minWidth: 170 },
@@ -63,7 +61,7 @@ export default function MeteorTable() {
   return (
     <React.Fragment>
       <Paper className={classes.root}>
-        <TableContainer className={classes.container}>
+        <TableContainer>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -95,7 +93,7 @@ export default function MeteorTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[1, 2]}
+          rowsPerPageOptions={[10, 25, 50]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
