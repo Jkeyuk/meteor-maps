@@ -8,7 +8,8 @@ export default class MeteorMapMap extends React.Component {
       latlng: {
         lat: 51.505,
         lng: -0.09
-      }
+      },
+      zoom: 12
     };
   }
 
@@ -22,7 +23,7 @@ export default class MeteorMapMap extends React.Component {
   };
 
   onViewportChanged = viewport => {
-    this.setState({ latlng: viewport.center });
+    this.setState({ latlng: viewport.center, zoom: viewport.zoom });
   };
 
   render() {
@@ -30,7 +31,7 @@ export default class MeteorMapMap extends React.Component {
       <React.Fragment>
         <Map
           center={this.state.latlng}
-          zoom={5}
+          zoom={this.state.zoom}
           style={{ height: "400px" }}
           onClick={this.onClickSet}
           onViewportChanged={this.onViewportChanged}
