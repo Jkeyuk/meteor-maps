@@ -12,6 +12,7 @@ export default class MeteorMapMap extends React.Component {
   }
 
   render() {
+    const messages = this.props.markerMessage;
     return (
       <React.Fragment>
         <Map
@@ -24,12 +25,12 @@ export default class MeteorMapMap extends React.Component {
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={this.props.latlng}>
+          <Marker position={this.props.markerLatLng}>
             <Popup>
               <span>
-                A pretty CSS3 popup.
-                <br />
-                Easily customizable.
+                {messages.map(element => {
+                  return <p>{element}</p>;
+                })}
               </span>
             </Popup>
           </Marker>

@@ -10,7 +10,12 @@ export default class MeteorMap extends React.Component {
         lat: 51.505,
         lng: -0.09
       },
-      zoom: 8
+      zoom: 8,
+      markerLatLng: {
+        lat: 51.505,
+        lng: -0.09
+      },
+      markerMessage: ["Click a row to see the impact site"]
     };
   }
 
@@ -20,6 +25,16 @@ export default class MeteorMap extends React.Component {
 
   onRowClicked = row => {
     this.setState({ latlng: [row.reclat, row.reclong], zoom: 13 });
+    this.setState({ markerLatLng: [row.reclat, row.reclong] });
+
+    let messages = [];
+    for (const key in row) {
+      if (row.hasOwnProperty(key)) {
+        const element = row[key];
+        messages.push(key + element);
+      }
+    }
+    this.setState({ markerMessage: messages });
   };
 
   render() {
@@ -29,7 +44,9 @@ export default class MeteorMap extends React.Component {
         <MeteorMapMap
           latlng={this.state.latlng}
           zoom={this.state.zoom}
+          markerLatLng={this.state.markerLatLng}
           onViewportChanged={this.onViewportChanged}
+          markerMessage={this.state.markerMessage}
         />
         <MeteorTable onRowClicked={this.onRowClicked} />
       </React.Fragment>
