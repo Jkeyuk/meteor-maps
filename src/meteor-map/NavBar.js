@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,6 +14,13 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
+  },
+  textField: {
+    marginRight: theme.spacing(2),
+    backgroundColor: "white"
+  },
+  toolBar: {
+    backgroundColor: "blue"
   }
 }));
 
@@ -23,24 +30,16 @@ export default function NavBar() {
     <React.Fragment>
       <div className={css.root}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar className={css.toolBar}>
             <Typography variant="h6" className={css.title}>
               Meteor Maps
             </Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={css.menuButton}
-            >
-              Table
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={css.menuButton}
-            >
-              Map
-            </Button>
+            <TextField
+              id="outlined-secondary"
+              label="Search"
+              variant="outlined"
+              className={css.textField}
+            />
           </Toolbar>
         </AppBar>
       </div>
