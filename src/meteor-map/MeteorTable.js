@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
+import meteorData from "./meteorData.json";
 
 const useStyles = makeStyles({
   root: {
@@ -18,20 +19,31 @@ const useStyles = makeStyles({
   }
 });
 const columns = [
-  { id: "Name", label: "Name", minWidth: 170 },
-  { id: "Year", label: "Year", minWidth: 100 },
-  { id: "Mass", label: "Mass(g)", minWidth: 170 },
-  { id: "Lat", label: "Lat", minWidth: 170 },
-  { id: "Lng", label: "Lng", minWidth: 170 }
+  { id: "id", label: "Id", minWidth: 170 },
+  { id: "name", label: "Name", minWidth: 170 },
+  { id: "year", label: "Year", minWidth: 100 },
+  { id: "mass (g)", label: "Mass(g)", minWidth: 170 },
+  { id: "reclat", label: "Lat", minWidth: 170 },
+  { id: "reclong", label: "Lng", minWidth: 170 }
 ];
 
-const rows = [
-  createData("dad", 1985, 213, 123.22, 1223.221),
-  createData("asdasd", 222, 99, 99.99, 99.221)
-];
+const rows = [];
 
-function createData(Name, Year, Mass, Lat, Lng) {
-  return { Name, Year, Mass, Lat, Lng };
+meteorData.forEach(row => {
+  rows.push(
+    createData(
+      row.id,
+      row.name,
+      row.year,
+      row["mass (g)"],
+      row.reclat,
+      row.reclong
+    )
+  );
+});
+
+function createData(id, name, year, mass, reclat, reclong) {
+  return { id, name, year, "mass (g)": mass, reclat, reclong };
 }
 
 export default function MeteorTable() {
