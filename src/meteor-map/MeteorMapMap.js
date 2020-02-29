@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map, Marker, Tooltip, TileLayer } from "react-leaflet";
 
 export default class MeteorMapMap extends React.Component {
   constructor(props) {
@@ -13,6 +13,17 @@ export default class MeteorMapMap extends React.Component {
 
   render() {
     const messages = this.props.markerMessage;
+    const marker = messages ? (
+      <Marker position={this.props.markerLatLng}>
+        <Tooltip>
+          <span>
+            {messages.map(element => {
+              return <p>{element}</p>;
+            })}
+          </span>
+        </Tooltip>
+      </Marker>
+    ) : null;
     return (
       <React.Fragment>
         <Map
@@ -25,15 +36,7 @@ export default class MeteorMapMap extends React.Component {
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={this.props.markerLatLng}>
-            <Popup>
-              <span>
-                {messages.map(element => {
-                  return <p>{element}</p>;
-                })}
-              </span>
-            </Popup>
-          </Marker>
+          {marker}
         </Map>
       </React.Fragment>
     );
