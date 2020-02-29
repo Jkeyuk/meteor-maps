@@ -8,41 +8,12 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
-import meteorData from "./meteorData.json";
 
 const useStyles = makeStyles({
   root: {
     width: "100%"
   }
 });
-
-const columns = [
-  { id: "id", label: "Id", minWidth: 170 },
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "year", label: "Year", minWidth: 100 },
-  { id: "mass (g)", label: "Mass(g)", minWidth: 170 },
-  { id: "reclat", label: "Lat", minWidth: 170 },
-  { id: "reclong", label: "Lng", minWidth: 170 }
-];
-
-const rows = [];
-
-meteorData.forEach(row => {
-  rows.push(
-    createData(
-      row.id,
-      row.name,
-      row.year,
-      row["mass (g)"],
-      row.reclat,
-      row.reclong
-    )
-  );
-});
-
-function createData(id, name, year, mass, reclat, reclong) {
-  return { id, name, year, "mass (g)": mass, reclat, reclong };
-}
 
 export default function MeteorTable(props) {
   const classes = useStyles();
@@ -62,13 +33,17 @@ export default function MeteorTable(props) {
     props.onRowClicked(row);
   };
 
+  const columns = props.columns ? props.columns : [];
+
+  const data = props.data ? props.data : [];
+
   return (
     <React.Fragment>
       <Paper className={classes.root}>
         <TablePagination
           rowsPerPageOptions={[10, 25, 50]}
           component="div"
-          count={rows.length}
+          count={data.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
@@ -89,7 +64,7 @@ export default function MeteorTable(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
+              {data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(row => {
                   return (

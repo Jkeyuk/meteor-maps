@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import MeteorTable from "./MeteorTable";
 import MeteorMapMap from "./MeteorMapMap";
+import meteorData from "./meteorData.json";
 export default class MeteorMap extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,16 @@ export default class MeteorMap extends React.Component {
         lat: 51.505,
         lng: -0.09
       },
-      markerMessage: ["Click a row to see the impact site"]
+      markerMessage: ["Click a row to see the impact site"],
+      data: meteorData,
+      columns: [
+        { id: "id", label: "Id", minWidth: 170 },
+        { id: "name", label: "Name", minWidth: 170 },
+        { id: "year", label: "Year", minWidth: 100 },
+        { id: "mass (g)", label: "Mass(g)", minWidth: 170 },
+        { id: "reclat", label: "Lat", minWidth: 170 },
+        { id: "reclong", label: "Lng", minWidth: 170 }
+      ]
     };
   }
 
@@ -48,7 +58,11 @@ export default class MeteorMap extends React.Component {
           onViewportChanged={this.onViewportChanged}
           markerMessage={this.state.markerMessage}
         />
-        <MeteorTable onRowClicked={this.onRowClicked} />
+        <MeteorTable
+          onRowClicked={this.onRowClicked}
+          data={this.state.data}
+          columns={this.state.columns}
+        />
       </React.Fragment>
     );
   }
