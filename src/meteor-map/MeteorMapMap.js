@@ -4,43 +4,27 @@ import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 export default class MeteorMapMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      latlng: {
-        lat: 51.505,
-        lng: -0.09
-      },
-      zoom: 12
-    };
+    this.handleOnViewportChanged = this.handleOnViewportChanged.bind(this);
   }
 
-  onClickSet = e => {
-    this.setState({
-      latlng: {
-        lat: 22.505,
-        lng: -0.09
-      }
-    });
-  };
-
-  onViewportChanged = viewport => {
-    this.setState({ latlng: viewport.center, zoom: viewport.zoom });
-  };
+  handleOnViewportChanged(viewport) {
+    this.props.onViewportChanged(viewport);
+  }
 
   render() {
     return (
       <React.Fragment>
         <Map
-          center={this.state.latlng}
-          zoom={this.state.zoom}
+          center={this.props.latlng}
+          zoom={this.props.zoom}
           style={{ height: "400px" }}
-          onClick={this.onClickSet}
-          onViewportChanged={this.onViewportChanged}
+          onViewportChanged={this.handleOnViewportChanged}
         >
           <TileLayer
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={this.state.latlng}>
+          <Marker position={this.props.latlng}>
             <Popup>
               <span>
                 A pretty CSS3 popup.
