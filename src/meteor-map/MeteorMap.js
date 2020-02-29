@@ -31,7 +31,7 @@ export default class MeteorMap extends React.Component {
     for (const key in row) {
       if (row.hasOwnProperty(key)) {
         const element = row[key];
-        messages.push(key + element);
+        messages.push(key + ": " + element);
       }
     }
     this.setState({ markerMessage: messages });
