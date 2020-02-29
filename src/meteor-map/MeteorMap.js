@@ -10,12 +10,16 @@ export default class MeteorMap extends React.Component {
         lat: 51.505,
         lng: -0.09
       },
-      zoom: 10
+      zoom: 8
     };
   }
 
   onViewportChanged = viewport => {
     this.setState({ latlng: viewport.center, zoom: viewport.zoom });
+  };
+
+  onRowClicked = row => {
+    this.setState({ latlng: [row.reclat, row.reclong], zoom: 13 });
   };
 
   render() {
@@ -27,7 +31,7 @@ export default class MeteorMap extends React.Component {
           zoom={this.state.zoom}
           onViewportChanged={this.onViewportChanged}
         />
-        <MeteorTable />
+        <MeteorTable onRowClicked={this.onRowClicked} />
       </React.Fragment>
     );
   }

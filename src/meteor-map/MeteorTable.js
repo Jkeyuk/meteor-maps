@@ -44,7 +44,7 @@ function createData(id, name, year, mass, reclat, reclong) {
   return { id, name, year, "mass (g)": mass, reclat, reclong };
 }
 
-export default function MeteorTable() {
+export default function MeteorTable(props) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -56,6 +56,10 @@ export default function MeteorTable() {
   const handleChangeRowsPerPage = event => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const handleRowClick = row => {
+    props.onRowClicked(row);
   };
 
   return (
@@ -80,7 +84,11 @@ export default function MeteorTable() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(row => {
                   return (
-                    <TableRow key={row.id}>
+                    <TableRow
+                      key={row.id}
+                      onClick={() => handleRowClick(row)}
+                      hover={true}
+                    >
                       {columns.map(col => {
                         return (
                           <TableCell key={col.id}>{row[col.id]}</TableCell>
