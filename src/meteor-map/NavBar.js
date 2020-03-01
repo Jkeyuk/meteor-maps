@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "white"
   },
   toolBar: {
-    backgroundColor: "blue"
+    backgroundColor: " #9E9E9E"
   }
 }));
 
