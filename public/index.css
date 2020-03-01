@@ -1,5 +1,7 @@
 html,
-body {
-  height: 100%;
+body,
+#root {
+  margin: 0;
   background-color: #616161;
+  min-height: 100vh;
 }
