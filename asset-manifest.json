@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/meteor-maps/static/js/main.fad80448.chunk.js",
+    "main.js.map": "/meteor-maps/static/js/main.fad80448.chunk.js.map",
+    "runtime-main.js": "/meteor-maps/static/js/runtime-main.8a319950.js",
+    "runtime-main.js.map": "/meteor-maps/static/js/runtime-main.8a319950.js.map",
+    "static/js/2.7cd4c03e.chunk.js": "/meteor-maps/static/js/2.7cd4c03e.chunk.js",
+    "static/js/2.7cd4c03e.chunk.js.map": "/meteor-maps/static/js/2.7cd4c03e.chunk.js.map",
+    "index.html": "/meteor-maps/index.html",
+    "precache-manifest.b91b75abf4cd94ddeaf8a44faa3d7933.js": "/meteor-maps/precache-manifest.b91b75abf4cd94ddeaf8a44faa3d7933.js",
+    "service-worker.js": "/meteor-maps/service-worker.js",
+    "static/js/2.7cd4c03e.chunk.js.LICENSE.txt": "/meteor-maps/static/js/2.7cd4c03e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8a319950.js",
+    "static/js/2.7cd4c03e.chunk.js",
+    "static/js/main.fad80448.chunk.js"
+  ]
+}
