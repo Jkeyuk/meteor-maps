@@ -24,8 +24,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NavBar() {
+export default function NavBar(props) {
   const css = useStyles();
+
+  const handleTextOnChange = e => {
+    if (props.onTextFieldChange) {
+      props.onTextFieldChange(e.target.value);
+    }
+  };
+
   return (
     <React.Fragment>
       <div className={css.root}>
@@ -39,6 +46,7 @@ export default function NavBar() {
               label="Search"
               variant="outlined"
               className={css.textField}
+              onChange={handleTextOnChange}
             />
           </Toolbar>
         </AppBar>
