@@ -18,7 +18,7 @@ export default class MeteorMapMap extends React.Component {
         <Tooltip>
           <span>
             {messages.map(element => {
-              return <p>{element}</p>;
+              return <p key={element}>{element}</p>;
             })}
           </span>
         </Tooltip>
