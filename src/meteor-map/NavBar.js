@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "white"
   },
   toolBar: {
-    backgroundColor: " #9E9E9E"
+    backgroundColor: "#9E9E9E",
+    color: "#000000"
   }
 }));
 
@@ -38,7 +39,7 @@ export default function NavBar(props) {
       <div className={css.root}>
         <AppBar position="static">
           <Toolbar className={css.toolBar}>
-            <Typography variant="h6" className={css.title}>
+            <Typography variant="h4" className={css.title}>
               Meteor Maps
             </Typography>
             <TextField
