@@ -20,12 +20,12 @@ export default class MeteorMap extends React.Component {
       markerMessage: ["Click a row to see the impact site"],
       data: meteorData,
       columns: [
-        { id: "id", label: "Id", minWidth: 20 },
-        { id: "name", label: "Name", minWidth: 50 },
-        { id: "year", label: "Year", minWidth: 50 },
-        { id: "mass (g)", label: "Mass(g)", minWidth: 50 },
-        { id: "reclat", label: "Lat", minWidth: 50 },
-        { id: "reclong", label: "Lng", minWidth: 50 }
+        { name: "id", label: "Id" },
+        { name: "name", label: "Name" },
+        { name: "year", label: "Year" },
+        { name: "mass (g)", label: "Mass(g)" },
+        { name: "reclat", label: "Lat" },
+        { name: "reclong", label: "Lng" }
       ]
     };
   }
@@ -35,16 +35,16 @@ export default class MeteorMap extends React.Component {
   };
 
   onRowClicked = row => {
-    this.setState({ latlng: [row.reclat, row.reclong], zoom: 13 });
-    this.setState({ markerLatLng: [row.reclat, row.reclong] });
+    this.setState({ latlng: [row[4], row[5]], zoom: 13 });
+    this.setState({ markerLatLng: [row[4], row[5]] });
 
     let messages = [];
-    for (const key in row) {
-      if (row.hasOwnProperty(key)) {
-        const element = row[key];
-        messages.push(key + ": " + element);
-      }
+
+    for (let index = 0; index < row.length; index++) {
+      const element = row[index];
+      messages.push(this.state.columns[index].label + ": " + element);
     }
+
     this.setState({ markerMessage: messages });
   };
 
