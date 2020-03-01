@@ -9,11 +9,17 @@ import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
+  },
+  row: {
+    backgroundColor: "#c7c7c7"
+  },
+  cell: {
+    color: "#000000"
   }
-});
+}));
 
 export default function MeteorTable(props) {
   const classes = useStyles();
@@ -52,7 +58,7 @@ export default function MeteorTable(props) {
         <TableContainer>
           <Table aria-label="simple table">
             <TableHead>
-              <TableRow>
+              <TableRow className={classes.row}>
                 {columns.map(column => (
                   <TableCell
                     key={column.id}
@@ -72,10 +78,13 @@ export default function MeteorTable(props) {
                       key={row.id}
                       onClick={() => handleRowClick(row)}
                       hover={true}
+                      className={classes.row}
                     >
                       {columns.map(col => {
                         return (
-                          <TableCell key={col.id}>{row[col.id]}</TableCell>
+                          <TableCell key={col.id} className={classes.cell}>
+                            {row[col.id]}
+                          </TableCell>
                         );
                       })}
                     </TableRow>
