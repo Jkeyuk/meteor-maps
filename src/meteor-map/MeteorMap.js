@@ -52,6 +52,12 @@ export default class MeteorMap extends React.Component {
   onTextFieldChange = val => {
     if (val.trim()) {
       console.log(val.trim());
+      const filteredData = meteorData.filter(row => {
+        return row["name"].toUpperCase().includes(val.trim().toUpperCase());
+      });
+      this.setState({ data: filteredData });
+    } else {
+      this.setState({ data: meteorData });
     }
   };
 
@@ -60,13 +66,15 @@ export default class MeteorMap extends React.Component {
       <React.Fragment>
         <Container maxWidth={false}>
           <NavBar onTextFieldChange={this.onTextFieldChange} />
-          {/* <MeteorMapMap
-          latlng={this.state.latlng}
-          zoom={this.state.zoom}
-          markerLatLng={this.state.markerLatLng}
-          onViewportChanged={this.onViewportChanged}
-          markerMessage={this.state.markerMessage}
-        /> */}
+          {
+            <MeteorMapMap
+              latlng={this.state.latlng}
+              zoom={this.state.zoom}
+              markerLatLng={this.state.markerLatLng}
+              onViewportChanged={this.onViewportChanged}
+              markerMessage={this.state.markerMessage}
+            />
+          }
           <MeteorTable
             onRowClicked={this.onRowClicked}
             data={this.state.data}
