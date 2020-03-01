@@ -48,23 +48,11 @@ export default class MeteorMap extends React.Component {
     this.setState({ markerMessage: messages });
   };
 
-  onTextFieldChange = val => {
-    if (val.trim()) {
-      console.log(val.trim());
-      const filteredData = meteorData.filter(row => {
-        return row["name"].toUpperCase().includes(val.trim().toUpperCase());
-      });
-      this.setState({ data: filteredData });
-    } else {
-      this.setState({ data: meteorData });
-    }
-  };
-
   render() {
     return (
       <React.Fragment>
         <Box width="100%">
-          <NavBar onTextFieldChange={this.onTextFieldChange} />
+          <NavBar />
           <MeteorMapMap
             latlng={this.state.latlng}
             zoom={this.state.zoom}

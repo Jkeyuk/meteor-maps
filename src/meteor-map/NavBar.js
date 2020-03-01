@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,14 +24,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NavBar(props) {
+export default function NavBar() {
   const css = useStyles();
-
-  const handleTextOnChange = e => {
-    if (props.onTextFieldChange) {
-      props.onTextFieldChange(e.target.value);
-    }
-  };
 
   return (
     <React.Fragment>
@@ -42,13 +35,6 @@ export default function NavBar(props) {
             <Typography variant="h4" className={css.title}>
               Meteor Maps
             </Typography>
-            <TextField
-              id="outlined-secondary"
-              label="Search By Name"
-              variant="outlined"
-              className={css.textField}
-              onChange={handleTextOnChange}
-            />
           </Toolbar>
         </AppBar>
       </div>
