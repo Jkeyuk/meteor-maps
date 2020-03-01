@@ -3,6 +3,8 @@ import NavBar from "./NavBar";
 import MeteorTable from "./MeteorTable";
 import MeteorMapMap from "./MeteorMapMap";
 import meteorData from "./meteorData.json";
+import Container from "@material-ui/core/Container";
+
 export default class MeteorMap extends React.Component {
   constructor(props) {
     super(props);
@@ -47,22 +49,30 @@ export default class MeteorMap extends React.Component {
     this.setState({ markerMessage: messages });
   };
 
+  onTextFieldChange = val => {
+    if (val.trim()) {
+      console.log(val.trim());
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
-        <NavBar />
-        <MeteorMapMap
+        <Container maxWidth={false}>
+          <NavBar onTextFieldChange={this.onTextFieldChange} />
+          {/* <MeteorMapMap
           latlng={this.state.latlng}
           zoom={this.state.zoom}
           markerLatLng={this.state.markerLatLng}
           onViewportChanged={this.onViewportChanged}
           markerMessage={this.state.markerMessage}
-        />
-        <MeteorTable
-          onRowClicked={this.onRowClicked}
-          data={this.state.data}
-          columns={this.state.columns}
-        />
+        /> */}
+          <MeteorTable
+            onRowClicked={this.onRowClicked}
+            data={this.state.data}
+            columns={this.state.columns}
+          />
+        </Container>
       </React.Fragment>
     );
   }
