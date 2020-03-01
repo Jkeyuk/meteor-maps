@@ -43,7 +43,7 @@ export default function NavBar(props) {
             </Typography>
             <TextField
               id="outlined-secondary"
-              label="Search"
+              label="Search By Name"
               variant="outlined"
               className={css.textField}
               onChange={handleTextOnChange}
