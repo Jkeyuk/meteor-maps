@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { Paper } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 const MeteorTable = props => {
   const [page, setPage] = React.useState(0);
@@ -22,8 +23,25 @@ const MeteorTable = props => {
     setPage(0);
   };
 
+  const returnFilteredRows = data => {
+    return data
+      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      .map(row => {
+        return (
+          <TableRow hover key={row.id}>
+            {props.columns.map(column => {
+              return (
+                <TableCell key={column.name}>{row[column.name]}</TableCell>
+              );
+            })}
+          </TableRow>
+        );
+      });
+  };
+
   return (
     <Paper>
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
       <TableContainer>
         <Table>
           <TableHead>
@@ -33,23 +51,7 @@ const MeteorTable = props => {
               })}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {props.data
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(row => {
-                return (
-                  <TableRow hover key={row.id}>
-                    {props.columns.map(column => {
-                      return (
-                        <TableCell key={row[column.name]}>
-                          {row[column.name]}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
+          <TableBody>{returnFilteredRows(props.data)}</TableBody>
         </Table>
       </TableContainer>
       <TablePagination
