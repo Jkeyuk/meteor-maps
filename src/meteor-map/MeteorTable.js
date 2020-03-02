@@ -86,9 +86,9 @@ const MeteorTable = props => {
 };
 
 MeteorTable.propTypes = {
-  data: PropTypes.array,
-  columns: PropTypes.array,
-  onRowClicked: PropTypes.func
+  data: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
+  onRowClicked: PropTypes.func.isRequired
 };
 
 MeteorTable.defaultProps = {
