@@ -41,7 +41,7 @@ const MeteorTable = props => {
                   <TableRow hover key={row.id}>
                     {props.columns.map(column => {
                       return (
-                        <TableCell key={column.id}>
+                        <TableCell key={row[column.name]}>
                           {row[column.name]}
                         </TableCell>
                       );
