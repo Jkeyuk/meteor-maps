@@ -13,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 const MeteorTable = props => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [data, setData] = React.useState(props.data);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -23,8 +24,20 @@ const MeteorTable = props => {
     setPage(0);
   };
 
-  const returnFilteredRows = data => {
-    return data
+  const onTextFieldChange = e => {
+    const val = e.target.value;
+    val.trim()
+      ? setData(
+          props.data.filter(row =>
+            row["name"].toUpperCase().includes(val.trim().toUpperCase())
+          )
+        )
+      : setData(props.data);
+    setPage(0);
+  };
+
+  const returnFilteredRows = rows => {
+    return rows
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map(row => {
         return (
@@ -41,7 +54,12 @@ const MeteorTable = props => {
 
   return (
     <Paper>
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
+        onChange={onTextFieldChange}
+      />
       <TableContainer>
         <Table>
           <TableHead>
@@ -51,13 +69,13 @@ const MeteorTable = props => {
               })}
             </TableRow>
           </TableHead>
-          <TableBody>{returnFilteredRows(props.data)}</TableBody>
+          <TableBody>{returnFilteredRows(data)}</TableBody>
         </Table>
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={props.data.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
