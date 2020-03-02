@@ -53,13 +53,13 @@ export default class MeteorMap extends React.Component {
       <React.Fragment>
         <Box width="100%">
           <NavBar />
-          <MeteorMapMap
+          {/* <MeteorMapMap
             latlng={this.state.latlng}
             zoom={this.state.zoom}
             markerLatLng={this.state.markerLatLng}
             onViewportChanged={this.onViewportChanged}
             markerMessage={this.state.markerMessage}
-          />
+          /> */}
           <MeteorTable
             onRowClicked={this.onRowClicked}
             data={this.state.data}
