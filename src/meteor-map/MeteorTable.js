@@ -91,4 +91,10 @@ MeteorTable.propTypes = {
   onRowClicked: PropTypes.func
 };
 
+MeteorTable.defaultProps = {
+  data: [],
+  columns: [],
+  onRowClicked: () => {}
+};
+
 export default MeteorTable;
