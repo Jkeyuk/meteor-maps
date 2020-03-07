@@ -28,8 +28,14 @@ const MeteorTable = props => {
     const val = e.target.value;
     val.trim()
       ? setData(
-          props.data.filter(row =>
-            row["name"].toUpperCase().includes(val.trim().toUpperCase())
+          props.data.filter(
+            row =>
+              row["id"].toString().includes(val.trim()) ||
+              row["name"].toUpperCase().includes(val.trim().toUpperCase()) ||
+              row["year"].toUpperCase().includes(val.trim().toUpperCase()) ||
+              row["mass (g)"].toString().includes(val.trim()) ||
+              row["reclat"].toString().includes(val.trim()) ||
+              row["reclong"].toString().includes(val.trim())
           )
         )
       : setData(props.data);
