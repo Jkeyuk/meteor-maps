@@ -32,7 +32,7 @@ export default function NavBar() {
       <div className={css.root}>
         <AppBar position="static">
           <Toolbar className={css.toolBar}>
-            <Typography variant="h4" className={css.title}>
+            <Typography variant="h5" className={css.title}>
               Meteor Maps
             </Typography>
           </Toolbar>
