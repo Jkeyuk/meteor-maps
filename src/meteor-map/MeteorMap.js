@@ -35,16 +35,17 @@ export default class MeteorMap extends React.Component {
   };
 
   onRowClicked = row => {
-    this.setState({ latlng: [row[4], row[5]], zoom: 13 });
-    this.setState({ markerLatLng: [row[4], row[5]] });
+    const position = [row["reclat"], row["reclong"]];
+    this.setState({ latlng: position, zoom: 13 });
+    this.setState({ markerLatLng: position });
 
     let messages = [];
-
-    for (let index = 0; index < row.length; index++) {
-      const element = row[index];
-      messages.push(this.state.columns[index].label + ": " + element);
+    for (const key in row) {
+      if (row.hasOwnProperty(key)) {
+        const element = row[key];
+        messages.push(key + ": " + element);
+      }
     }
-
     this.setState({ markerMessage: messages });
   };
 
