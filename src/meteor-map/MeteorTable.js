@@ -56,7 +56,7 @@ const MeteorTable = props => {
     <Paper>
       <TextField
         id="outlined-basic"
-        label="Outlined"
+        label="Search"
         variant="outlined"
         onChange={onTextFieldChange}
       />
