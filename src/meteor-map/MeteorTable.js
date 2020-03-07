@@ -32,6 +32,10 @@ const MeteorTable = props => {
     setPage(0);
   };
 
+  const handleRowClick = row => {
+    props.onRowClicked(row);
+  };
+
   const onTextFieldChange = e => {
     const val = e.target.value;
     val.trim()
@@ -55,7 +59,7 @@ const MeteorTable = props => {
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map(row => {
         return (
-          <TableRow hover key={row.id}>
+          <TableRow hover key={row.id} onClick={() => handleRowClick(row)}>
             {props.columns.map(column => {
               return (
                 <TableCell key={column.name}>{row[column.name]}</TableCell>
