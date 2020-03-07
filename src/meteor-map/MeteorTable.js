@@ -1,4 +1,5 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,7 +11,14 @@ import TableRow from "@material-ui/core/TableRow";
 import { Paper } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 
+const useStyles = makeStyles(theme => ({
+  textField: {
+    margin: theme.spacing(2)
+  }
+}));
+
 const MeteorTable = props => {
+  const css = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [data, setData] = React.useState(props.data);
@@ -65,6 +73,8 @@ const MeteorTable = props => {
         label="Search"
         variant="outlined"
         onChange={onTextFieldChange}
+        className={css.textField}
+        size="small"
       />
       <TableContainer>
         <Table>
